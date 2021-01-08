@@ -1,11 +1,11 @@
 swagger: "2.0"
 info:
   version: "1.0"
-  title: "Hello World API with new data"
+  title: "Hello World API"
 paths:
   /hello/{user}:
     get:
-      description: Returns a greeting to the user!
+      description: Say hello API!
       parameters:
         - name: user
           in: path
