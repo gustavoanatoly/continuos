@@ -5,7 +5,7 @@ info:
 paths:
   /hello/{user}:
     get:
-      description: Say hello API!
+      description: Say hello API Swagger!
       parameters:
         - name: user
           in: path
