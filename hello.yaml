@@ -1,7 +1,7 @@
 swagger: "2.0"
 info:
   version: "1.0"
-  title: "Hello World API"
+  title: "Hello World API with new data"
 paths:
   /hello/{user}:
     get:
