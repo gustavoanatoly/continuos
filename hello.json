@@ -4,6 +4,8 @@
     "version": "1.0",
     "title": "Hello World API"
   },
+  "host": "api.example.com",
+  "basePath": "/v1",
   "paths": {
     "/hello/{user}": {
       "get": {
