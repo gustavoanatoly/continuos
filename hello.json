@@ -25,7 +25,7 @@
             }
           },
           "400": {
-            "description": "Invalid characters in \"user\" were provided."
+            "description": "Invalid characters in user were provided."
           }
         }
       }
