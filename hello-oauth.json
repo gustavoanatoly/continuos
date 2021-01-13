@@ -1,0 +1,67 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "",
+    "version": "1.0",
+    "title": "hello"
+  },
+  "host": "api.example.com",
+  "basePath": "/v1",
+  "paths": {
+    "/hello/{user}": {
+      "get": {
+        "summary": "Returns a greeting to the user!",
+        "description": "Returns a greeting to the user!",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "path",
+            "description": "The name of the user to greet.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the greeting.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "400": {
+            "description": "Invalid characters in user were provided."
+          }
+        },
+        "x-resource-name": "/hello/{user}",
+        "x-destination": null,
+        "x-timeout": null,
+        "x-api-broken": false,
+        "x-interceptors": {
+          "1": {
+            "x-interceptor-position": 1,
+            "x-interceptor-type": "OAUTH",
+            "x-interceptor-content": "{\"location\":\"HEADER_OR_COOKIE\",\"name\":\"Sensedia-Auth\",\"grantTypes\":[\"PASSWORD\",\"AUTHORIZATION_CODE\",\"CLIENT_CREDENTIALS\",\"IMPLICIT\",\"JWT\"]}",
+            "x-interceptor-execution-point": "FIRST",
+            "x-interceptor-status": "REFERENCE"
+          }
+        }
+      },
+      "parameters": []
+    }
+  },
+  "x-destination": null,
+  "x-interceptors": {},
+  "x-life-cycle": null,
+  "x-timeout": null,
+  "x-access-token-expires-in": null,
+  "x-resources": {
+    "/hello/{user}": {
+      "x-resource-description": "",
+      "x-destination": null,
+      "x-interceptors": {},
+      "x-timeout": null,
+      "x-api-broken": false
+    }
+  },
+  "x-api-broken": false
+}
