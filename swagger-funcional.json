@@ -1,0 +1,10 @@
+{"name": "hello",
+ "swagger": "{\"swagger\":\"2.0\",\"info\":{\"version\":\"1.0\",\"title\":\"Hello World API\"},\"host\":\"api.example.com\",\"basePath\":\"/v1\",\"paths\":{\"/hello/{user}\":{\"get\":{\"description\":\"Returns a greeting to the user!\",\"parameters\":[{\"name\":\"user\",\"in\":\"path\",\"type\":\"string\",\"required\":true,\"description\":\"The name of the user to greet.\"}],\"responses\":{\"200\":{\"description\":\"Returns the greeting.\",\"schema\":{\"type\":\"string\"}},\"400\":{\"description\":\"Invalid characters in user were provided.\"}}}}}}",
+ "version": "1.0"}
+
+
+
+ curl -X POST "https://manager-demov3.sensedia.com/api-manager/api/v3/apis/swagger" 
+ -H "accept: */*" 
+ -H "Sensedia-Auth: 5d259f89-cdb3-30ef-a9b4-8c6d61837912" 
+ -H "Content-Type: application/json" -d "{\"name\": \"hello\", \"swagger\": \"{\\\"swagger\\\":\\\"2.0\\\",\\\"info\\\":{\\\"version\\\":\\\"1.0\\\",\\\"title\\\":\\\"Hello World API\\\"},\\\"host\\\":\\\"api.example.com\\\",\\\"basePath\\\":\\\"/v1\\\",\\\"paths\\\":{\\\"/hello/{user}\\\":{\\\"get\\\":{\\\"description\\\":\\\"Returns a greeting to the user!\\\",\\\"parameters\\\":[{\\\"name\\\":\\\"user\\\",\\\"in\\\":\\\"path\\\",\\\"type\\\":\\\"string\\\",\\\"required\\\":true,\\\"description\\\":\\\"The name of the user to greet.\\\"}],\\\"responses\\\":{\\\"200\\\":{\\\"description\\\":\\\"Returns the greeting.\\\",\\\"schema\\\":{\\\"type\\\":\\\"string\\\"}},\\\"400\\\":{\\\"description\\\":\\\"Invalid characters in user were provided.\\\"}}}}}}\", \"version\": \"1.0\"}"
