@@ -24,6 +24,7 @@ def jsonSlurpLaxWithoutSerializationTroubles(String jsonText)
 }
 node ('master') {
     String swaggerSensedia
+    def jsonResponse
     stage('Preparation') {
         git url:'https://github.com/gustavoanatoly/continuos.git', branch:"main"
 
@@ -87,12 +88,16 @@ node ('master') {
         println cmd
         def response = sh(script: cmd, returnStdout: true).trim()
         println response
-        def jsonResponse = new groovy.json.JsonSlurper().parseText(response)
+        jsonResponse = new groovy.json.JsonSlurper().parseText(response)
         if (jsonResponse.id == null) {
             throw new Exception("Erro: " + jsonResponse)
         }
+    }
 
 
+    stage ("Deploy") {
+        println jsonResponse.id
+        println jsonResponse.revision
     }
 
 }
