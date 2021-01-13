@@ -4,6 +4,7 @@ import groovy.json.JsonOutput
 import groovy.json.JsonBuilder
 import groovy.json.JsonParserType
 import groovy.json.StringEscapeUtils
+import net.sf.json.JSONObject
 
 
 @NonCPS
@@ -12,7 +13,6 @@ def jsonParse(def json) {
 
 node ('master') {
     String swaggerSensedia
-    def jsonResponse
     stage('Preparation') {
         git url:'https://github.com/gustavoanatoly/continuos.git', branch:"main"
 
@@ -43,19 +43,20 @@ node ('master') {
                     //println content
                     
                     // TODO replace name for title
-                    def jsonSensedia = new groovy.json.JsonSlurper().parseText(
-                            '''{
-                                "name": "string", 
-                                "swagger": "string",
-                                "version": "string"
-                            }''')
+                    // def jsonSensedia = new groovy.json.JsonSlurper().parseText(
+                    //         '''{
+                    //             "name": "string", 
+                    //             "swagger": "string",
+                    //             "version": "string"
+                    //         }''')
+                    def jsonSensedia = 
+                        JSONObject.fromObject('{"name": "string", "swagger": "string", "version": "string"}')
                     jsonSensedia.name = name
-                    println new JsonBuilder(content).toString()
-                    jsonSensedia.swagger = JsonOutput.toJson(content)
+                    jsonSensedia.swagger = content.toString()
                     jsonSensedia.version = "1.0"
                     println jsonSensedia.swagger
                     // swaggerSensedia = new JsonBuilder(jsonSensedia).toString()
-                    swaggerSensedia = JsonOutput.toJson(jsonSensedia)
+                    swaggerSensedia = jsonSensedia
                     println swaggerSensedia
 
 
@@ -78,7 +79,7 @@ node ('master') {
         println cmd
         def response = sh(script: cmd, returnStdout: true).trim()
         println response
-        jsonResponse = new groovy.json.JsonSlurper().parseText(response)
+        def jsonResponse = new groovy.json.JsonSlurper().parseText(response)
         if (jsonResponse.id == null) {
             throw new Exception("Erro: " + jsonResponse)
         }
@@ -86,8 +87,7 @@ node ('master') {
 
 
     stage ("Deploy") {
-        println jsonResponse.id
-        println jsonResponse.revision
+        println "Deploy stage"
     }
 
 }
