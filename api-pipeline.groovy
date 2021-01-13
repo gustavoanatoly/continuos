@@ -8,20 +8,8 @@ import groovy.json.StringEscapeUtils
 
 @NonCPS
 def jsonParse(def json) {
-    new groovy.json.JsonSlurperClassic().parseText(json)
 }
 
-def jsonSlurpLaxWithoutSerializationTroubles(String jsonText)
-{
-    return new JsonSlurperClassic().parseText(
-        new JsonBuilder(
-            new JsonSlurper()
-                .setType(JsonParserType.LAX)
-                .parseText(jsonText)
-        )
-        .toString()
-    )
-}
 node ('master') {
     String swaggerSensedia
     def jsonResponse
@@ -62,6 +50,7 @@ node ('master') {
                                 "version": "string"
                             }''')
                     jsonSensedia.name = name
+                    println new JsonBuilder(content).toString()
                     jsonSensedia.swagger = JsonOutput.toJson(content)
                     jsonSensedia.version = "1.0"
                     println jsonSensedia.swagger

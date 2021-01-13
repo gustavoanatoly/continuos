@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "version": "2.0",
-    "title": "Hello Another"
+    "title": "Hello World"
   },
   "host": "api.example.com",
   "basePath": "/v1",
