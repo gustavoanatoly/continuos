@@ -79,7 +79,7 @@ node ('master') {
         }
     }
 
-    stage("Deploy") {
+    stage("Exposicao") {
             
         writeFile file: "data.json", text: swaggerSensedia
 
