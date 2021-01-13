@@ -54,9 +54,10 @@ node ('master') {
                     def content = readJSON file: workspace + "/" + file
                     //println content
                     
+                    // TODO replace name for title
                     def jsonSensedia = new groovy.json.JsonSlurper().parseText(
                             '''{
-                                "name": "string",
+                                "name": "string", 
                                 "swagger": "string",
                                 "version": "string"
                             }''')
