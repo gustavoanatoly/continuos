@@ -13,6 +13,8 @@ def jsonParse(def json) {
 
 node ('master') {
     String swaggerSensedia
+    String apiId // Store id of api expose
+    String apiRevisionId // Store revision of api exposed
     stage('Preparation') {
         git url:'https://github.com/gustavoanatoly/continuos.git', branch:"main"
 
@@ -40,15 +42,7 @@ node ('master') {
                 if (extension == "json") {
                     println("Found: " + file + " adding to deploy stage")
                     def content = readJSON file: workspace + "/" + file
-                    //println content
                     
-                    // TODO replace name for title
-                    // def jsonSensedia = new groovy.json.JsonSlurper().parseText(
-                    //         '''{
-                    //             "name": "string", 
-                    //             "swagger": "string",
-                    //             "version": "string"
-                    //         }''')
                     def jsonSensedia = 
                         JSONObject.fromObject('{"name": "string", "swagger": "string", "version": "string"}')
                     jsonSensedia.name = name
@@ -82,12 +76,15 @@ node ('master') {
         def jsonResponse = new groovy.json.JsonSlurper().parseText(response)
         if (jsonResponse.id == null) {
             throw new Exception("Erro: " + jsonResponse)
+        } else {
+            apiId = jsonResponse.id
+            apiRevisionId = jsonResponse.revisionId
         }
     }
 
 
     stage ("Deploy") {
-        println "Deploy stage"
+        println "Deploy: Id: " + apiId + " revision: " + apiRevisionId
     }
 
 }
