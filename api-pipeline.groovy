@@ -82,9 +82,9 @@ node ('master') {
     stage("Shell") {        
         writeFile file: "data.json", text: swaggerSensedia
 
-        // def cmd = 'curl -X POST \"https://manager-demov3.sensedia.com/api-manager/api/v3/apis/swagger\" -H \"accept: */*\" -H \"Sensedia-Auth: 5d259f89-cdb3-30ef-a9b4-8c6d61837912\" -H \"Content-Type: application/json\" -d @data.json'
-        // println cmd
-        // def response = sh script: cmd 
+        def cmd = 'curl -X POST \"https://manager-demov3.sensedia.com/api-manager/api/v3/apis/swagger\" -H \"accept: */*\" -H \"Sensedia-Auth: 5d259f89-cdb3-30ef-a9b4-8c6d61837912\" -H \"Content-Type: application/json\" -d @data.json'
+        println cmd
+        def response = sh script: cmd 
     }
 
 }
