@@ -24,7 +24,7 @@ def jsonSlurpLaxWithoutSerializationTroubles(String jsonText)
 }
 node ('master') {
     String swaggerSensedia
-    stage('All') {
+    stage('Preparation') {
         git url:'https://github.com/gustavoanatoly/continuos.git', branch:"main"
 
         def gitSha
@@ -79,12 +79,20 @@ node ('master') {
         }
     }
 
-    stage("Shell") {        
+    stage("Deploy") {
+            
         writeFile file: "data.json", text: swaggerSensedia
 
         def cmd = 'curl -X POST \"https://manager-demov3.sensedia.com/api-manager/api/v3/apis/swagger\" -H \"accept: */*\" -H \"Sensedia-Auth: 5d259f89-cdb3-30ef-a9b4-8c6d61837912\" -H \"Content-Type: application/json\" -d @data.json'
         println cmd
-        def response = sh script: cmd 
+        def response = sh(script: cmd, returnStdout: true).trim()
+        println response
+        def jsonResponse = new groovy.json.JsonSlurper().parseText(response)
+        if (jsonResponse.id == null) {
+            throw new Exception("Erro: " + jsonResponse)
+        }
+
+
     }
 
 }
