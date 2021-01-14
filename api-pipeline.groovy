@@ -15,13 +15,13 @@ node ('master') {
     String swaggerSensedia
     String apiId // Store id of api expose
     String apiRevisionId // Store revision of api exposed
+    String sensediaAuth = '5d259f89-cdb3-30ef-a9b4-8c6d61837912'
     stage('Preparation') {
         git url:'https://github.com/gustavoanatoly/continuos.git', branch:"main"
 
         def gitSha
         def filesModified
         def pwd = pwd()
-        def sensediaAuth = '777acf98-7f8e-3cd8-b55d-7871671b21d2'
 
         try {
             gitSha = sh (
@@ -69,7 +69,7 @@ node ('master') {
             
         writeFile file: "data.json", text: swaggerSensedia
 
-        def cmd = 'curl -X POST \"https://manager-demov3.sensedia.com/api-manager/api/v3/apis/swagger\" -H \"accept: */*\" -H \"Sensedia-Auth: 5d259f89-cdb3-30ef-a9b4-8c6d61837912\" -H \"Content-Type: application/json\" -d @data.json'
+        def cmd = 'curl -X POST \"https://manager-demov3.sensedia.com/api-manager/api/v3/apis/swagger\" -H \"accept: */*\" -H \"Sensedia-Auth: ' + sensediaAuth + '\" -H \"Content-Type: application/json\" -d @data.json'
         println cmd
         def response = sh(script: cmd, returnStdout: true).trim()
         println response

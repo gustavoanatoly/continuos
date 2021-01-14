@@ -3,7 +3,7 @@
   "info": {
     "description": "",
     "version": "1.0",
-    "title": "hello-oauth"
+    "title": "hello-oauth-v1"
   },
   "host": "api.example.com",
   "basePath": "/v1",
