@@ -50,11 +50,7 @@ node ('master') {
                     println jsonSensedia.swagger
                     // swaggerSensedia = new JsonBuilder(jsonSensedia).toString()
                     swaggerSensedia = jsonSensedia
-                    println swaggerSensedia
-
-
-
-                    
+                    println swaggerSensedia 
                 }
                     
             }

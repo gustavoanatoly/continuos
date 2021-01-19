@@ -6,7 +6,7 @@
     "title": "hello-oauth-v1"
   },
   "host": "api.example.com",
-  "basePath": "/v1",
+  "basePath": "/v1/update",
   "paths": {
     "/hello/{user}": {
       "get": {
