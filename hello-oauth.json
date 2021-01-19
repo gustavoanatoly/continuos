@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "description": "",
+    "description": "Some description to update",
     "version": "1.0",
     "title": "hello-oauth-v1"
   },
