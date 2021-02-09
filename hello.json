@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "version": "2.0",
-    "title": "Hello World"
+    "title": "Hello World - update Natura"
   },
   "host": "api.example.com",
   "basePath": "/v1",
